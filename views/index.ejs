@@ -1,0 +1,215 @@
+<%- include("partials/header.ejs") %>
+<section id="home">
+<div class="hero-section">
+    <!-- hero-UI -->
+    <div class="create-post">
+    <h1>Your Shortcut to <br><span>Freedom</span> ’’</h1>
+                <div class="post-btn">
+            <button class="button" type="submit" onclick="document.querySelector('.modal-overlay').style.display = 'flex'">
+                Post
+            </button>
+            </div>
+            </div>
+            <div class="hero-img">
+                <img class="pixel" src="\images\pixeltrue-seo-1.svg" alt="hero-img">
+            </div>
+
+        <!-- Modal Form -->
+  <div class="modal-overlay">
+    <div class="modal">
+      <form action="/posts" method="POST">
+        <h2>Create New Post</h2>
+
+        <label>Title:</label><br />
+        <input type="text" name="title" required /><br /><br />
+
+        <label>Body:</label><br />
+        <textarea name="body" rows="5" required></textarea><br /><br />
+
+        <label>Author:</label><br />
+        <input type="text" name="author" required /><br /><br />
+
+        <button type="submit">Submit</button>
+        <button class="red" type="button" onclick="document.querySelector('.modal-overlay').style.display = 'none'">X</button>
+      </form>
+    </div>
+  </div>
+    </div>
+    </section>
+    <hr/>
+    <h2 class="Latest">Trending</h2>
+<section>
+    <!-- static posts -->
+    <div class="posts">
+        <% latest.forEach((latest,index)=>{ %>
+        <div class="user-posts" data-index="<%= index %>" data-url="<%= latest.url %>" data-heading="<%= latest.heading %>" data-desc="<%= latest.desc %>" data-author="<%= latest.author %>">
+            <div class="user-img">
+                <a class="click" href="#home" onclick="showStaticModal(this)"><img src= <%= latest.url %>></a>
+            </div>
+        <div class="post-header">
+                    <a class="click" href="#home" onclick="showStaticModal(this)"><h3 class="header">
+                <%= latest.heading%>
+            </h3></a></div>
+            <p><%= latest.desc.substring(0, 66)%>
+                </p>
+                <hr>
+            <div class="author"><h4 class="author"><%= latest.author%></h4></div>
+            <div class="date">
+                <% var now = new Date();
+
+                var day = String(now.getDate()).padStart(2, '0');
+                var month = String(now.getMonth() + 1).padStart(2, '0'); // months are 0-based
+                var year = String(now.getFullYear()).slice(-2); // get last 2 digits
+                
+                var formattedDate = `${day}/${month}/${year}`;
+                    %>
+                <%= formattedDate %>
+            </div>
+        </div>                
+        <% }) %>
+            </div>
+        </section>
+
+        <!-- modal-overlay2 for viewing static posts -->
+<div class="modal-overlay2" style="display:none;">
+  <div class="modal">
+    <div class="user-posts">
+      <div class="user-img">
+        <img id="modImg" src="" alt="heading">
+      </div>
+      <div class="post-header">
+        <h2 class="header" id="modHead"></h2>
+      </div>
+      <p id="modBody"></p>
+      <hr />
+      <div class="author"><h5 class="author" id="modAut"></h5></div>
+      <div class="date" id="modDate"></div>
+      <button type="button" onclick="closeStaticModal()">x</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+        <!-- dynamic post -->
+        <% if (post.length > 0) { %>
+            <section id="recent-post">
+                <h2>Recent Posts</h2>
+                <div class="posts">
+                <% post.forEach((post, index) => { %>
+        <div class="user-posts new-posts">
+            <div class="post-header"> 
+                <a  href="/posts/<%= post.id %>"><h3 class="header">
+                <%= post.title %></a>
+            </h3>
+        </div>
+            <p><%= post.body.substring(0, 50) %>...</p>
+            <div class="author"><h4 class="author"><%= post.author %></h4></div>
+            <div class="date">
+                <% var now = new Date();
+
+                var day = String(now.getDate()).padStart(2, '0');
+                var month = String(now.getMonth() + 1).padStart(2, '0'); // months are 0-based
+                var year = String(now.getFullYear()).slice(-2); // get last 2 digits
+                
+                var formattedDate = `${day}/${month}/${year}`;
+                    %>
+                <%= formattedDate %>
+            </div>
+            
+        </div>
+        <% }) %>
+        </div>
+    </section>
+    <% } %>
+<!-- About Section -->
+<section id="about">
+  <div class="about-img">
+    <img class="pixel2" src="images\pixeltrue-business-meeting-1.svg" alt="hero-img">
+    </div>
+    <div class="about-text">
+  <h2 >About <span class="bs">blankSpace</span></h2>
+  <p>
+    <strong class="bs">blankSpace</strong> is your shortcut to freedom of expression and knowledge sharing. Whether you’re passionate about technology, lifestyle, education, or just want to share your thoughts, Blogify is the place to connect and inspire. 
+    <br><br>
+    Discover trending topics, read insightful posts from our community, or create your own blog post with ease. We believe everyone has a story to tell—start yours today!
+  </p>
+  </div>
+</section>
+<h2 class="Latest">Get In Touch</h2>
+<!-- contact section -->
+    <section id="contact">
+      <div class="container">
+        <form class="mx-auto">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input
+            type="text"
+            class="form-control"
+            placeholder="Your Name"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input
+            type="email"
+            class="form-control"
+            placeholder="you@example.com"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea
+            class="form-control"
+            rows="4"
+            placeholder="Your message..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">
+            Send
+          </button>
+        </form>
+      </div>
+      <div class="about-img">
+        <img class="pixel2" src="images\pixeltrue-vision-1.svg" alt="hero-img">
+        </div>
+    </section>
+
+<script>
+const manu = document.querySelector(".nav-buttons");
+const toggle = document.querySelector(".menu-svg");
+toggle.addEventListener("click", function() {
+  manu.classList.toggle("active") ;
+});
+
+function showStaticModal(element) {
+  // Find the parent .user-posts div
+  const postDiv = element.closest('.user-posts');
+  // Get data attributes
+  const url = postDiv.getAttribute('data-url');
+  const heading = postDiv.getAttribute('data-heading');
+  const desc = postDiv.getAttribute('data-desc');
+  const author = postDiv.getAttribute('data-author');
+  // Set modal content
+  document.getElementById('modImg').src = url;
+  document.getElementById('modHead').textContent = heading;
+  document.getElementById('modBody').textContent = desc;
+  document.getElementById('modAut').textContent = author;
+  // Set date
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const year = String(now.getFullYear()).slice(-2);
+  document.getElementById('modDate').textContent = `${day}/${month}/${year}`;
+  // Show modal
+  document.querySelector('.modal-overlay2').style.display = 'flex';
+}
+
+function closeStaticModal() {
+  document.querySelector('.modal-overlay2').style.display = 'none';
+}
+</script>
+
+<%- include("partials/footer.ejs") %>
+

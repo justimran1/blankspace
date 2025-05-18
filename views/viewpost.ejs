@@ -1,0 +1,92 @@
+<!-- viewpost.ejs -->
+<%- include("partials/header.ejs") %>
+<div class="container">
+  <div class="post-view">
+    <div class="post-content">
+      <div>
+        <h2><%= posts.title %></h2>
+        <p><%= posts.body %></p>
+      </div>
+      <div class="editDate">
+        <p><strong>Author:</strong> <%= posts.author %></p>
+        <p>
+          <% var now = new Date(); var day
+          =String(now.getDate()).padStart(2,'0'); var month =
+          String(now.getMonth() + 1).padStart(2, '0'); var year
+          =String(now.getFullYear()).slice(-2); var formattedDate =
+          `${day}/${month}/${year}`; %>
+          <small>Date: <%= formattedDate %></small>
+        </p>
+      </div>
+    </div>
+    <br />
+    <div class="the-button">
+      <div>
+        <button
+          class="view-btn"
+          type="submit"
+          onclick="document.querySelector('#editModal').style.display ='flex'"
+        >
+          ✏️
+        </button>
+      </div>
+      <div>
+        <form
+          action="/posts/<%= posts.id %>/delete"
+          method="DELETE"
+          style="display: inline"
+        >
+          <button
+            class="view-btn red"
+            type="submit"
+            onclick="return confirm('Are you sure you want to delete this post?')"
+          >
+            🗑️
+          </button>
+        </form>
+      </div>
+      <div>
+        <button class="view-btn"><a href="/">←</a></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit modal pop-up -->
+  <div id="editModal" class="modal-overlay">
+    <div class="modal">
+      <h2>Edit Post</h2>
+      <form action="/posts/<%= posts.id %>/edit" method="POST">
+        <label>Title:</label><br />
+        <input
+          type="text"
+          name="title"
+          value="<%= posts.title %>"
+          required
+        /><br /><br />
+
+        <label>Body:</label><br />
+        <textarea name="body" rows="5" required><%= posts.body %></textarea
+        ><br /><br />
+
+        <label>Author:</label><br />
+        <input
+          type="text"
+          name="author"
+          value="<%= posts.author %>"
+          required
+        /><br /><br />
+
+        <button type="submit">Update</button>
+        <button
+          class="red"
+          type="button"
+          onclick="document.getElementById('editModal').style.display='none'"
+        >
+          X
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

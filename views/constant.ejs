@@ -1,0 +1,20 @@
+<!-- constant posts will be viewed here -->
+<%- include('partials/header.ejs') %>
+
+<div class="user-posts">
+  <div class="user-img">
+    <img src= <%= New.url %> alt="heading"></div>
+  <div class="post-header">
+    <h2 class="header"><%= New.heading%></h2>
+  </div>
+  <p><%= New.desc%></p>
+  <hr />
+  <div class="author"><h5 class="author"><%= New.author%></h5></div>
+  <div class="date">
+    <% var now = new Date(); var day = String(now.getDate()).padStart(2, '0');
+    var month = String(now.getMonth() + 1).padStart(2, '0'); // months are
+    0-based var year = String(now.getFullYear()).slice(-2); // get last 2 digits
+    var formattedDate = `${day}/${month}/${year}`; %> <%= formattedDate %>
+  </div>
+</div>
+<%- include("partials/footer.ejs") %>
