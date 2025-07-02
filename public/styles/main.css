@@ -23,12 +23,10 @@ main {
 .navbar {
   /* background: linear-gradient(90deg, #0077b6 0%, #00b4d8 50%, #90e0ef 100%); */
   padding: 0.8rem 0.5rem;
-  z-index: 6;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.514);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: fixed;
 }
 .menu-icon {
   display: none;
@@ -85,7 +83,7 @@ main {
   padding: 0.4rem 0.7rem;
   border-radius: 4px;
   border: 1px solid rgb(17, 17, 17);
-  /* margin-right: 0.5rem; */
+  margin-right: 0.5rem;
 }
 
 .btn-outline-success {
@@ -233,7 +231,7 @@ main {
 
 .user-posts:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.514);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
 
 .user-img img {
@@ -584,13 +582,20 @@ a {
     padding: auto;
     width: auto;
     letter-spacing: 1px;
+    padding-left: 1.2rem;
+    margin-bottom: 0;
   }
   .hero-section {
     flex-direction: row;
     display: flex;
   }
+  .hero-section .post-btn {
+    padding-left: 1.2rem;
+    margin-top: 0;
+    padding-top: 0;
+  }
   .pixel {
-    max-width: 100%;
+    max-width: 90%;
     max-height: 100%;
   }
   #about {
