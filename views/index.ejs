@@ -21,10 +21,10 @@
         <h2>Create New Post</h2>
 
         <label>Title:</label><br />
-        <input type="text" name="title" required /><br /><br />
+        <input type="text" name="title" required autocorrect="on" autofocus/><br /><br />
 
         <label>Body:</label><br />
-        <textarea name="body" rows="5" required></textarea><br /><br />
+        <textarea name="body" autofocus rows="5" autocorrect="on" required></textarea><br /><br />
 
         <label>Author:</label><br />
         <input type="text" name="author" required /><br /><br />
@@ -50,7 +50,7 @@
                     <a class="click" href="#home" onclick="showStaticModal(this)"><h3 class="header">
                 <%= latest.heading%>
             </h3></a></div>
-            <p><%= latest.desc.substring(0, 66)%>
+            <p><%= latest.desc.substring(0, 115)%>...
                 </p>
                 <hr>
             <div class="author"><h4 class="author"><%= latest.author%></h4></div>
@@ -104,7 +104,7 @@
                 <%= post.title %></a>
             </h3>
         </div>
-            <p><%= post.body.substring(0, 50) %>...</p>
+            <p><%= post.body.substring(0, 100) %>...</p>
             <div class="author"><h4 class="author"><%= post.author %></h4></div>
             <div class="date">
                 <% var now = new Date();
@@ -131,7 +131,7 @@
     <div class="about-text">
   <h2 >About <span class="bs">blankSpace</span></h2>
   <p>
-    <strong class="bs">blankSpace</strong> is your shortcut to freedom of expression and knowledge sharing. Whether you’re passionate about technology, lifestyle, education, or just want to share your thoughts, Blogify is the place to connect and inspire. 
+    <strong class="bs">blankSpace</strong> is your shortcut to freedom of expression and knowledge sharing. Whether you’re passionate about technology, lifestyle, education, or just want to share your thoughts, blankSpace is the place to connect and inspire. 
     <br><br>
     Discover trending topics, read insightful posts from our community, or create your own blog post with ease. We believe everyone has a story to tell—start yours today!
   </p>

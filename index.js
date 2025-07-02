@@ -49,15 +49,6 @@ app.get("/posts/:id", (req, res) => {
     res.status(404).send("posts not found !!");
   }
 });
-app.get("/posts/:id/edit", (req, res) => {
-  const id = parseInt(req.params.id);
-  const posts = post.find((p) => p.id === id);
-  if (posts) {
-    res.render("viewpost", { posts });
-  } else {
-    res.status(404).send("Post not found");
-  }
-});
 //Handle the form submission for editing a post
 app.post("/posts/:id/edit", (req, res) => {
   const id = parseInt(req.params.id);
